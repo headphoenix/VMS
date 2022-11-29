@@ -16,6 +16,8 @@ import { theme } from "./src/infrastructure/theme/index"
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 export default function App() {
 
@@ -34,12 +36,14 @@ export default function App() {
 
   return (
     <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <ThemeProvider theme={theme}>
     <AuthenticationContextProvider>
                 <Navigation />
         </AuthenticationContextProvider>
     </ThemeProvider>
     <ExpoStatusBar style='auto' />
+    </GestureHandlerRootView>
     </>
   );
 }

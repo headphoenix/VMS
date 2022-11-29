@@ -20,7 +20,7 @@ export const SettingsNavigator = () => {
             // ...TransitionPresets.RevealFromBottomAndroid,
             }}>
             <SettingsStack.Screen 
-              name='HOME'
+              name='SettingsScreen'
               component={SettingsScreen}
             />
             {/* <HomeStack.Screen 

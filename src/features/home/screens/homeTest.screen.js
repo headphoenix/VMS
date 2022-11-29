@@ -1,5 +1,5 @@
 import React, { useContext, useState,  useRef } from "react";
-import { FlatList, TouchableOpacity,Text, ImageBackground, Animated, StyleSheet} from "react-native";
+import { FlatList, TouchableOpacity,Text, ImageBackground, Animated, StyleSheet, View, SharedElement} from "react-native";
 import styled from "styled-components/native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 
@@ -9,8 +9,13 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { FadeInView } from "../../../components/animations/fade.animation";
 import {InstrumentList} from "../components/instrument-list.styles"
 
-import { InstrumentInfoCard } from "../components/instrument-info-card.component"
+import { InstrumentTest } from "../components/instrutest"
 import { Instruments } from "../../../data/data";
+
+import { FontAwesome5 } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons'; 
+
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 import Back from "../../../../assets/images/ground.png"
 // import { RestaurantsContext } from "../../../services/restaurants/restaurant.context";
@@ -26,7 +31,7 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const HomeScreen = ({ navigation }) => {
+export const HomeTest = ({ navigation }) => {
   const [isToggled, setIsToggled] = useState(false);
   const numColumns = Math.ceil(Instruments.length / 2);
 
@@ -36,10 +41,21 @@ export const HomeScreen = ({ navigation }) => {
   const AVATAR_SIZE = 70;
   const ITEM_SIZE = AVATAR_SIZE + SPACING * 3;
 
+
   return (
     <SafeArea>
      <ImageBackground blurRadius={50} style={{width: '100%', height: 1000, flex: 1}} source={Back}>
-
+     <Spacer position="left" size="large">
+      <View style={{flexDirection: 'row', marginBottom: 5}}>
+     <FontAwesome5 name="guitar" size={35} color="purple" />
+      <Text style={{fontWeight: "700", fontSize: 22, marginBottom: 15, marginVertical:5}}>VMS</Text>
+      </View>
+      <View style={{flexDirection: "row" , justifyContent: "space-between"}}>
+     <Text style={{fontWeight: "700", fontSize: 22,}}>Choose Course</Text>
+     {/* <MaterialIcons style={{paddingRight: 22}} name="library-music" size={30} color="purple" /> */}
+     <MaterialCommunityIcons style={{paddingRight: 22}} name="dots-grid" size={30} color="purple" />
+     </View>
+     </Spacer>
      <InstrumentList 
       data={Instruments}
       onScroll={Animated.event(
@@ -74,21 +90,17 @@ export const HomeScreen = ({ navigation }) => {
         })
 
         return (
-          // <TouchableOpacity
-          //   onPress={() =>
-          //     navigation.navigate("RestaurantDetail", {
-          //       restaurant: item,
-          //     })
-          //   }
-          // >
-            <Spacer position="bottom" size="large">
+          <TouchableOpacity onPress={() => navigation.navigate("Level", {
+            item:item
+          })}>
+            <Spacer position="bottom" size="medium">
               <Animated.View style={{transform: [{scale}], opacity}}>
             <FadeInView>
-                <InstrumentInfoCard instrument={item} />
+                <InstrumentTest instrument={item} />
               </FadeInView>
               </Animated.View>
             </Spacer>
-          // </TouchableOpacity>
+           </TouchableOpacity>
         );
       }}
       keyExtractor={(item) => item.name}
@@ -97,3 +109,14 @@ export const HomeScreen = ({ navigation }) => {
     </SafeArea>
   );
 };
+
+const styles = StyleSheet.create({
+  bg: {
+   position: "absolute",
+   width: "100%",
+   height: "50%",
+   backgroundColor: "red",
+   transform: [{ translateY: 100 / 2}],
+   borderRadius: 32,
+  }
+})
