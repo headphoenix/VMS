@@ -6,9 +6,10 @@ import * as Animatable from "react-native-animatable"
 import { SharedElement } from "react-navigation-shared-element";
 
 import { useRef } from "react";
-import { Level, Animations } from "../../../data/data"
+import { Level, Animations, color } from "../../../data/data"
 
 import { LevelItem } from "../components/LevelItem";
+import { Topics } from "../components/topics";
 
 export const LevelDetails = ({ navigation, route }) => {
     const { item } = route.params
@@ -18,9 +19,15 @@ export const LevelDetails = ({ navigation, route }) => {
     const ITEM_SIZE = AVATAR_SIZE + SPACING * 3;
 
     const renderItem = ({ item, index }) => (
-        <LevelItem item={item} index={index} animation={animation} navigation={navigation} level={Level}/>)
+        <LevelItem item={item} index={index} animation={animation} navigation={navigation} />)
        
+    const rendre = ({ item, index }) => (
+        <Topics item={item} index={index} animation={animation} navigation={navigation} />)
+    
+    
         const viewRef = useRef(null);
+        
+        const light = color[Math.floor(Math.random() * color.length)]
 
         const animation = Animations[Math.floor(Math.random() * Animations.length)]
   console.log('====================================');
@@ -35,7 +42,7 @@ export const LevelDetails = ({ navigation, route }) => {
                             StyleSheet.absoluteFillObject,
                             {
                                 borderRadius: 0,
-                                backgroundColor: "red",
+                                backgroundColor: light,
                                 height: "35%"
                             }
                         ]}
@@ -46,12 +53,14 @@ export const LevelDetails = ({ navigation, route }) => {
                 </Spacer>
                 <SharedElement id={`item.${item.id}.name`}>
                     <Text style={styles.name}>{item.name}</Text>
+                    <Text style={styles.description}>We've prepared a special program {'\n'}for you  based on your level</Text>
                 </SharedElement>
                 <SharedElement id={`item.${item.id}.image`} style={styles.image}>
                     <Image source={item.img} style={styles.image} />
                 </SharedElement>
                 <SharedElement id='general.bg'>
-                    <View style={styles.bg}>
+                    <ScrollView style={styles.bg}>
+                    <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 25, paddingBottom: 10}}>Choose Your Level</Text>
                             <Animatable.View
                                 ref={viewRef}
                                 easing={'ease-in-out'}
@@ -63,13 +72,26 @@ export const LevelDetails = ({ navigation, route }) => {
                                     numColumns={2}
                                     renderItem={renderItem}
                                     showsVerticalScrollIndicator={false}
-                                    contentContainerStyle={{ paddingBottom: 100 }}
+                                    scrollEnabled={false}
+                                    // contentContainerStyle={{ paddingBottom: 5 }}
                                 />
-                                <ScrollView>
-                                <Text>Special Topics</Text>
-                                </ScrollView>
                             </Animatable.View>
-                    </View>
+                            <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 25, paddingBottom: 10}}>Special Topics</Text>
+                            <Animatable.View
+                                ref={viewRef}
+                                easing={'ease-in-out'}
+                                duration={500}
+                                style={styled.container}>
+                                <FlatList
+                                    data={Level}
+                                    keyExtractor={(item) => item.name}
+                                    renderItem={rendre}
+                                    showsVerticalScrollIndicator={false}
+                                    scrollEnabled={false}
+                                    // contentContainerStyle={{ paddingBottom: 5 }}
+                                />
+                            </Animatable.View>
+                    </ScrollView>
                 </SharedElement>
             </SafeArea>
         )
@@ -96,6 +118,7 @@ const styled = StyleSheet.create({
         fontSize: 16,
         color: 'black',
     },
+
     separator: {
         height: StyleSheet.hairlineWidth,
         backgroundColor: 'rgba(0, 0, 0, .08)',
@@ -131,22 +154,26 @@ const styled = StyleSheet.create({
 const styles = StyleSheet.create({
     name: {
         fontWeight: "700",
-        fontSize: 20,
+        fontSize: 30,
         position: "absolute",
-        top: 85,
-        left: 35,
+        top: 5,
+        left: 10,
     },
     description: {
-        fontSize: 11,
+        fontSize: 16,
         opacity: 0.7,
+        paddingTop: 10,
+        position: 'absolute',
+        top: 35,
+        left: 10
     },
     image: {
-        width: 110,
-        height: 110,
+        width: 125,
+        height: 125,
         resizeMode: "contain",
         position: "absolute",
-        top: 48,
-        right: 20,
+        top: 45,
+        right: 7,
     },
     bg: {
         position: "relative",
@@ -156,6 +183,6 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         transform: [{ translateY: 100 / 2 }],
         borderRadius: 32,
-        paddingTop: 32,
+        paddingTop: 15,
     }
 })

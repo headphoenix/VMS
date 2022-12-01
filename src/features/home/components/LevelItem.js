@@ -1,4 +1,4 @@
-import { Dimensions,TouchableOpacity, View,Icon, Text, StyleSheet } from "react-native"
+import { Image,Dimensions,TouchableOpacity, View,Icon, Text, StyleSheet, ImageBackground } from "react-native"
 import * as Animatable from "react-native-animatable"
 import { Feather } from "@expo/vector-icons";
 
@@ -16,7 +16,7 @@ const colorAr = [
   ]
   const bgColor = (i) => colorAr[i % colorAr.length];
 
-export const LevelItem = ({ item, index, animation, navigation, level }) => {
+export const LevelItem = ({ item, index, animation, navigation,}) => {
     return (
       <Animatable.View
         animation={animation}
@@ -26,13 +26,14 @@ export const LevelItem = ({ item, index, animation, navigation, level }) => {
         <View style={styled.listItem}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => navigation.navigate('Screen')}>
-            <View style={[styled.image, { backgroundColor: bgColor(index) }]} />
-          </TouchableOpacity>
-          <View style={styled.detailsContainer}>
+            onPress={() => navigation.navigate('progress')}>
+            <View style={[styled.image, { backgroundColor: bgColor(index) }]}>
             <Text style={styled.name}>{item.name}</Text>
-            <Feather name="more-vertical" size={20} color='#000' />
-          </View>
+            <Text style={{textAlign: "center", padding: 10, fontSize: 18}}>{item.desc}</Text>
+            {/* <Image style={{height: 100, width: 125, left: -20,bottom: 40, zIndex: -1}} source={item.img} /> */}
+            </View>
+          </TouchableOpacity>
+         
         </View>
       </Animatable.View>
     )
@@ -41,8 +42,10 @@ export const LevelItem = ({ item, index, animation, navigation, level }) => {
   const styled = StyleSheet.create({
     name: {
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 20,
         color: 'black',
+        textAlign: 'center',
+        paddingTop: 7,
     },
     separator: {
         height: StyleSheet.hairlineWidth,
@@ -54,7 +57,7 @@ export const LevelItem = ({ item, index, animation, navigation, level }) => {
         justifyContent: 'center',
     },
     listItem: {
-        height: 200,
+        height: 175,
         width: Dimensions.get('window').width / 2 - 16,
         backgroundColor: 'white',
         marginLeft: 11,
@@ -64,7 +67,6 @@ export const LevelItem = ({ item, index, animation, navigation, level }) => {
         height: 150,
         margin: 5,
         borderRadius: 10,
-        backgroundColor: '#637aff',
     },
     detailsContainer: {
         paddingHorizontal: 16,

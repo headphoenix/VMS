@@ -49,14 +49,13 @@ export const InstrumentTest = ({ instrument = {} }) => {
         StyleSheet.absoluteFillObject,
        ]}/>
        </SharedElement>
-       <SharedElement id={`item.${instrument.id}.name`}>
-        <Text style={styles.name}>{instrument.name}</Text>
-        </SharedElement>
-       
-       <Text style={styles.description}>{instrument.name}</Text>
-      <SharedElement id={`item.${instrument.id}.image`} style={styles.image}>
+       <View style={{flexDirection: "column",flex: 1,paddingLeft: 15}}>
+       <Text style={styles.name}>{instrument.name}</Text>
+       <Text style={styles.description}>
+        Learn how to play the  {'\n'}
+         {instrument.name} in Church from {'\n'}Zero to Mastery</Text> 
+       </View>
        <RestaurantCardCover source={instrument.img} style={styles.image} />
-       </SharedElement>
       </View>
       <SharedElement id="general.bg">
       <View />
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
    },
    description: {
-    fontSize: 11,
+    fontSize: 15,
     opacity: 0.7,
    },
    image: {
