@@ -1,6 +1,6 @@
 import React from "react";
 import { SvgXml } from "react-native-svg";
-import { Text, View, Image, Animated } from "react-native";
+import { Text, View, Image, Animated, StyleSheet } from "react-native";
 
 import {
   RestaurantCard,
@@ -36,7 +36,7 @@ export const InstrumentInfoCard = ({ instrument = {} }) => {
 
   return (
     <RestaurantCard elevation={5}>
-      <View style={{flexDirection: "row", padding: SPACING, justifyContent: "space-between",}}>
+      <View style={styles.style}>
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text style={{fontSize: 22, fontWeight: "700"}} variant="label">{name}</Text>
@@ -45,3 +45,12 @@ export const InstrumentInfoCard = ({ instrument = {} }) => {
     </RestaurantCard>
   );
 };
+
+ const styles = StyleSheet.create({
+  style: {
+    flex: 1,
+    flexDirection: "row",
+    padding: SPACING,
+    justifyContent: "space-between"
+  }
+ })

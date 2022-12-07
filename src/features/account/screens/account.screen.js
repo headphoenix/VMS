@@ -3,6 +3,7 @@ import { Text,View,Image, ImageBackground,TouchableOpacity } from "react-native"
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { SvgXml } from "react-native-svg";
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 import Back from "../../../../assets/images/ground.png"
 
@@ -23,14 +24,17 @@ export const AccountScreen = ({ navigation }) => {
       <View style={{flex: 0.95}}>
         <Spacer position='left' size='medium'>
         <Spacer position="top" size='small'>
-        <Text style={{fontSize: "20px"}}>Virtual Music School</Text>
+      <View style={{flexDirection:"row", marginBottom: 5}}>
+     <FontAwesome5 name="guitar" size={35} color="purple" />
+      <Text style={{fontWeight: "700", fontSize: 22, marginBottom: 15, marginVertical:5}}>VMS</Text>
+      </View>
 
         
         <Spacer position="top" size='large'>
-        <Text style={{fontSize: "30px", fontWeight: 'bold'}}>Learn Music</Text>
-        <Text style={{fontSize: "30px", fontWeight: 'bold'}}>Anytime Anywhere</Text>
+        <Text style={{fontSize: 30, fontWeight: 'bold'}}>Learn Music</Text>
+        <Text style={{fontSize: 30, fontWeight: 'bold'}}>Anytime Anywhere</Text>
         <Spacer position="top" size='small'>
-        <Text style={{fontSize: "15px", fontWeight: '300'}}>Learn any type of musical instrument</Text>
+        <Text style={{fontSize: 15, fontWeight: '300'}}>Learn any type of musical instrument</Text>
         </Spacer>
         </Spacer>
         </Spacer>

@@ -14,6 +14,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 import Back from "../../../../assets/images/ground.png"
+import { ProgressItem } from "../components/progressitem";
+
 
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
@@ -24,8 +26,10 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const Progress = ({ navigation }) => {
+export const Progress = ({ navigation, route }) => {
   const [isToggled, setIsToggled] = useState(false);
+
+  const { item } = route.params;
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -33,22 +37,41 @@ export const Progress = ({ navigation }) => {
   const AVATAR_SIZE = 70;
   const ITEM_SIZE = AVATAR_SIZE + SPACING * 3;
 
+  const RestaurantList = styled(FlatList).attrs({
+    contentContainerStyle: {
+      padding: 16,
+    },
+  })``;
 
   return (
     <SafeArea>
      <ImageBackground blurRadius={50} style={{width: '100%', height: 1000, flex: 1}} source={Back}>
      <Spacer position="left" size="large">
-      <View style={{flexDirection: 'row', marginBottom: 5}}>
+      <View style={{flexDirection:"row", marginBottom: 5}}>
      <FontAwesome5 name="guitar" size={35} color="purple" />
       <Text style={{fontWeight: "700", fontSize: 22, marginBottom: 15, marginVertical:5}}>VMS</Text>
       </View>
-      <View style={{flexDirection: "row" , justifyContent: "space-between"}}>
-     <Text style={{fontWeight: "700", fontSize: 22,}}>Choose Course</Text>
-     {/* <MaterialIcons style={{paddingRight: 22}} name="library-music" size={30} color="purple" /> */}
-     <MaterialCommunityIcons style={{paddingRight: 22}} name="dots-grid" size={30} color="purple" />
-     </View>
      </Spacer>
-     
+     <Spacer position="left" size="large">
+     <Text style={{fontWeight: "600", fontSize: 30, marginBottom: 15, marginVertical:5}}>{item.name}</Text>
+     </Spacer>
+     <RestaurantList
+        data={[1,2,3,4,5]}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity
+            >
+              <Spacer position="bottom" size="large">
+              <FadeInView>
+                  <ProgressItem />
+                </FadeInView>
+              </Spacer>
+            </TouchableOpacity>
+          );
+        }}
+        keyExtractor={(item) => item.name}
+      />
+
      </ImageBackground>
     </SafeArea>
   );

@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { Ionicons } from '@expo/vector-icons'; 
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import { Image, ImageBackground,Text,TouchableOpacity,View } from "react-native";
+import { Platform, Image, ImageBackground,Text,TouchableOpacity,View, KeyboardAvoidingView, ScrollView } from "react-native";
 import {
   AccountCover,
   AccountContainer,
@@ -24,7 +25,7 @@ export const RegisterScreen = ({ navigation }) => {
     const { onRegister, isLoading, error } = useContext(AuthenticationContext);
 
   return (
-    <>
+    <KeyboardAwareScrollView>
     <ImageBackground style={{width: 400, height: 300}} source={Piano} >
     <Spacer position="top" size="large">
     <Spacer position="left" size="medium">
@@ -32,11 +33,12 @@ export const RegisterScreen = ({ navigation }) => {
     </Spacer>
     </Spacer>
     </ImageBackground>
-    <SafeArea >
+    <View >
     <View style={{position: "relative",flexDirection: "column", justifyContent: "center", alignItems: "center", alignContent: 'center'}}>
-      <Text style={{fontSize: "30px", fontWeight: 'bold'}}>Sign Up</Text>
+      <Text style={{fontSize: 30, fontWeight: 'bold'}}>Sign Up</Text>
       </View>
       <AccountContainer>
+        <ScrollView>
         <AuthInput
           label="E-mail"
           value={email}
@@ -65,8 +67,7 @@ export const RegisterScreen = ({ navigation }) => {
             onChangeText={(p) => setRepeatedPassword(p)}
           />
         </Spacer>
-        <Spacer size="medium">
-        </Spacer>
+        </ScrollView>
         {error && (
           <ErrorContainer size="large">
             <Text variant="error">{error}</Text>
@@ -85,19 +86,21 @@ export const RegisterScreen = ({ navigation }) => {
             <ActivityIndicator animating={true} color={Colors.blue300} />
           )}
         </Spacer>
-        <Spacer size="medium">
-        <Text style={{paddingLeft: 115,fontSize: "15px", fontWeight: 'bold'}}>Or Register with</Text>
+        <Spacer position="top" size="medium">
+        <Text style={{textAlign: "center",fontSize: 15, fontWeight: 'bold'}}>Or Register with</Text>
         </Spacer>
         <Spacer size="medium">
         <AuthButton mode="contained" >
           Google
         </AuthButton>
         </Spacer>
-        <Spacer size="medium">
-        <Text onPress={() => navigation.goBack()} style={{paddingLeft: 50,fontSize: "15px", fontWeight: 'bold', color: "blue"}}>Already Have an Account?Log In</Text>
+        <Spacer size="small">
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text  style={{textAlign: "center", fontSize: 15, fontWeight: 'bold', color: "blue"}}>Already Have an Account?Log In</Text>
+        </TouchableOpacity>
         </Spacer>
       </AccountContainer>
-      </SafeArea>
-      </>
+   </View>
+   </KeyboardAwareScrollView>
   );
 };

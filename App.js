@@ -9,6 +9,8 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 
+
+
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { ThemeProvider } from "styled-components/native";
 
@@ -36,14 +38,14 @@ export default function App() {
 
   return (
     <>
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    {/* <GestureHandlerRootView style={{ flex: 1 }}> */}
     <ThemeProvider theme={theme}>
     <AuthenticationContextProvider>
                 <Navigation />
         </AuthenticationContextProvider>
     </ThemeProvider>
     <ExpoStatusBar style='auto' />
-    </GestureHandlerRootView>
+    {/* </GestureHandlerRootView> */}
     </>
   );
 }

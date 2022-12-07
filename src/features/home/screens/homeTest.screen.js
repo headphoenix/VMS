@@ -31,6 +31,7 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
+
 export const HomeTest = ({ navigation }) => {
   const [isToggled, setIsToggled] = useState(false);
   const numColumns = Math.ceil(Instruments.length / 2);
@@ -44,15 +45,14 @@ export const HomeTest = ({ navigation }) => {
 
   return (
     <SafeArea>
-     <ImageBackground blurRadius={50} style={{width: '100%', height: 1000, flex: 1}} source={Back}>
+     <ImageBackground blurRadius={50} style={{width: "100%", height: 1000, flex: 1}} source={Back}>
      <Spacer position="left" size="large">
-      <View style={{flexDirection: 'row', marginBottom: 5}}>
+      <View style={{flexDirection:"row", marginBottom: 5}}>
      <FontAwesome5 name="guitar" size={35} color="purple" />
       <Text style={{fontWeight: "700", fontSize: 22, marginBottom: 15, marginVertical:5}}>VMS</Text>
       </View>
-      <View style={{flexDirection: "row" , justifyContent: "space-between"}}>
+      <View style={{flexDirection:"row" , justifyContent: "space-between"}}>
      <Text style={{fontWeight: "700", fontSize: 22,}}>Choose Course</Text>
-     {/* <MaterialIcons style={{paddingRight: 22}} name="library-music" size={30} color="purple" /> */}
      <MaterialCommunityIcons style={{paddingRight: 22}} name="dots-grid" size={30} color="purple" />
      </View>
      </Spacer>

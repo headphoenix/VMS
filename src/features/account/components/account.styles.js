@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { Platform } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { colors } from "../../../infrastructure/theme/colors";
 
@@ -7,20 +8,21 @@ import { Text } from "../../../components/typography/text.component";
 
 export const AccountContainer = styled.View`
   background-color: rgba(255, 255, 255, 0.7);
-  padding: ${(props) => props.theme.space[4]};
-  margin-top: ${(props) => props.theme.space[0]};
+  padding: ${(props) => props.theme.space[3]};
+  margin-right: auto;
+  margin-left: auto;
 `;
 
 export const AuthButton = styled(Button).attrs({
   color: "purple",
 })`
-  padding: ${(props) => props.theme.space[2]};
+  ${Platform.OS === "ios" ? "padding: 8px" : "padding: 4px" };
 `;
 
 export const AuthInput = styled(TextInput)`
-  width: 325px;
-  height: 50px;
+  ${Platform.OS === "ios" ? "width: 325px; height: 50px" : "width: 275px; height: 45px" } 
 `;
+
 
 export const Title = styled(Text)`
   font-size: 30px;

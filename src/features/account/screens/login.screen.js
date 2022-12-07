@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { Ionicons } from '@expo/vector-icons'; 
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import { Image, ImageBackground,Text,TouchableOpacity,View } from "react-native";
 import {
@@ -22,20 +23,24 @@ export const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const { onLogin, error, isLoading } = useContext(AuthenticationContext);
   return (
-    <>
+    <KeyboardAwareScrollView>
     <SafeArea >
-    <ImageBackground style={{width: 400, height: 250, borderRadius: 100}} source={Piano}>
+    <ImageBackground style={{width: 375, height: 250, borderRadius: 100, alignSelf: "center"}} source={Piano}>
     <Spacer position="left" size="medium">
-    <Ionicons onPress={() => navigation.goBack()} name="chevron-back-sharp" size={35} color="black" />
+    <Spacer position="top" size="medium">
+    <TouchableOpacity onPress={() => navigation.goBack()} >
+    <Ionicons name="chevron-back-sharp" size={35} color="black" />
+    </TouchableOpacity>
+    </Spacer>
     </Spacer>
     </ImageBackground>
-    <View style={{position: "relative",flexDirection: "column", justifyContent: "center", alignItems: "center", alignContent: 'center'}}>
+    <View style={{flexDirection:"column", alignSelf: "center", marginRight: "auto", marginLeft: "auto"}}>
       <Spacer position="top" size="small">
-      <Text style={{paddingLeft: 110,fontSize: "30px", fontWeight: 'bold'}}>Welcome</Text>
-      <Text style={{paddingLeft: 50, paddingRight: 50, fontSize: "15px", fontWeight: '300'}}>Use your credentials below and login to your account</Text>
+      <Text style={{fontSize: 30, fontWeight: 'bold', textAlign: "center"}}>Welcome</Text>
+      <Text style={{paddingLeft: 50, paddingRight: 50, fontSize: 15, fontWeight: '300', textAlign: "center"}}>Use your credentials below and login to your account</Text>
       </Spacer>
       </View>
-      <AccountContainer>
+      <AccountContainer style={{marginRight: "auto", marginLeft: "auto"}}>
         <AuthInput
           label="E-mail"
           value={email}
@@ -54,15 +59,15 @@ export const LoginScreen = ({ navigation }) => {
             onChangeText={(p) => setPassword(p)}
           />
         </Spacer>
-        <Spacer size="medium">
-        <Text style={{paddingLeft: "32%",fontSize: "15px", fontWeight: 'bold', color: "blue"}}>Forgot Password?</Text>
+        <Spacer position="top" size="small">
+        <Text style={{textAlign: 'center',fontSize: 15, fontWeight: 'bold', color: "blue"}}>Forgot Password?</Text>
         </Spacer>
         {error && (
           <ErrorContainer size="large">
             <Text variant="error">{error}</Text>
           </ErrorContainer>
         )}
-        <Spacer size="large">
+        <Spacer size="medium">
           {!isLoading ? (
             <AuthButton
               icon="lock-open-outline"
@@ -76,7 +81,7 @@ export const LoginScreen = ({ navigation }) => {
           )}
         </Spacer>
         <Spacer size="medium">
-        <Text style={{paddingLeft: 115,fontSize: "15px", fontWeight: 'bold'}}>Or Login With</Text>
+        <Text style={{textAlign: "center",fontSize: 15, fontWeight: 'bold'}}>Or Login With</Text>
         </Spacer>
         <Spacer size="medium">
         <AuthButton mode="contained" >
@@ -84,10 +89,12 @@ export const LoginScreen = ({ navigation }) => {
         </AuthButton>
         </Spacer>
         <Spacer size="medium">
-        <Text onPress={() => navigation.navigate("Register")} style={{paddingLeft: 50,fontSize: "15px", fontWeight: 'bold', color: "blue"}}>Don't have an account?Sign Up</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+        <Text style={{textAlign: "center",fontSize:15, fontWeight: 'bold', color: "blue"}}>Don't have an account?Sign Up</Text>
+          </TouchableOpacity>
         </Spacer>
       </AccountContainer>
       </SafeArea>
-      </>
+      </KeyboardAwareScrollView>
   );
 };

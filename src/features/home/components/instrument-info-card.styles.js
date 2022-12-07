@@ -9,7 +9,7 @@ export const Icon = styled.Image`
 
 export const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
-  flex-direction: "row";
+  flex-direction: row;
 `;
 
 export const RestaurantCardCover = styled(Image)`

@@ -26,7 +26,9 @@ export const LevelItem = ({ item, index, animation, navigation,}) => {
         <View style={styled.listItem}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => navigation.navigate('progress')}>
+            onPress={() => navigation.navigate('progress', {
+              item
+            })}>
             <View style={[styled.image, { backgroundColor: bgColor(index) }]}>
             <Text style={styled.name}>{item.name}</Text>
             <Text style={{textAlign: "center", padding: 10, fontSize: 18}}>{item.desc}</Text>
@@ -69,9 +71,10 @@ export const LevelItem = ({ item, index, animation, navigation,}) => {
         borderRadius: 10,
     },
     detailsContainer: {
+        flex: 1,
         paddingHorizontal: 16,
         paddingVertical: 5,
-        flexDirection: 'row',
+        flexDirection:"row",
         justifyContent: 'space-between',
         alignItems: 'center',
     },

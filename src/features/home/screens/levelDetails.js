@@ -1,4 +1,4 @@
-import { Dimensions,View, Text, StyleSheet, Image, ScrollView, FlatList } from "react-native";
+import { Dimensions,View, Text, StyleSheet, Image, ScrollView, FlatList,Platform } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Ionicons } from "@expo/vector-icons";
@@ -30,9 +30,9 @@ export const LevelDetails = ({ navigation, route }) => {
         const light = color[Math.floor(Math.random() * color.length)]
 
         const animation = Animations[Math.floor(Math.random() * Animations.length)]
-  console.log('====================================');
-  console.log(Math.floor(Math.random() * Animations.length), Math.random() * Animations.length, Animations.length);
-  console.log('====================================');
+//   console.log('====================================');
+//   console.log(Math.floor(Math.random() * Animations.length), Math.random() * Animations.length, Animations.length);
+//   console.log('====================================');
 
         return (
             <SafeArea style={{ flex: 1 }}>
@@ -97,20 +97,6 @@ export const LevelDetails = ({ navigation, route }) => {
         )
 }
 
-LevelDetails.sharedElements = (route, otherRoute, showing) => {
-    const { item } = route.params;
-
-    return [
-        // {
-        //     id: `tem.${item.id}.name`,
-        //     animation: 'move'
-        // },
-        // {
-        //     id: `tem.${item.id}.image`,
-        //     animation: 'move'
-        // },
-    ]
-}
 
 const styled = StyleSheet.create({
     name: {
@@ -142,9 +128,10 @@ const styled = StyleSheet.create({
         backgroundColor: '#637aff',
     },
     detailsContainer: {
+        flex: 1,
         paddingHorizontal: 16,
         paddingVertical: 5,
-        flexDirection: 'row',
+        flexDirection:"row",
         justifyContent: 'space-between',
         alignItems: 'center',
     },
@@ -172,14 +159,14 @@ const styles = StyleSheet.create({
         height: 125,
         resizeMode: "contain",
         position: "absolute",
-        top: 45,
+        top: Platform.OS === "ios" ? 74 : 45,
         right: 7,
     },
     bg: {
         position: "relative",
         width: "100%",
         height: "80%",
-        top: 68,
+        top: 105,
         backgroundColor: "white",
         transform: [{ translateY: 100 / 2 }],
         borderRadius: 32,
