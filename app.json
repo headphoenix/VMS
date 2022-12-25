@@ -18,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.headphoenix.VMS"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,10 +27,15 @@
         "backgroundColor": "#FFFFFF"
       },
       "softwareKeyboardLayoutMode": "pan",
-     "package": "com.headphoenix.VMS"
+      "package": "com.headphoenix.VMS"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6a33799d-cb60-4bd1-a718-a0ffc9a79c2e"
+      }
     }
   }
 }

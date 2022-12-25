@@ -47,8 +47,6 @@ export const AppNavigator = () => (
       }}
     >
       <Tab.Screen name="Home" component={HomeNavigator} />
-      <Tab.Screen name="Notifications" component={Map} />
-      <Tab.Screen name="Chat" component={Map} />
       <Tab.Screen name="To_Do" component={Map} />
       <Tab.Screen name="Settings" component={SettingsNavigator} />
     </Tab.Navigator>

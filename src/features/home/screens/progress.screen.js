@@ -15,6 +15,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Back from "../../../../assets/images/ground.png"
 import { ProgressItem } from "../components/progressitem";
+import { pics } from "../../../data/data";
+
+// import ProgressCircle from 'react-native-progress-circle'
 
 
 const Loading = styled(ActivityIndicator)`
@@ -56,14 +59,15 @@ export const Progress = ({ navigation, route }) => {
      <Text style={{fontWeight: "600", fontSize: 30, marginBottom: 15, marginVertical:5}}>{item.name}</Text>
      </Spacer>
      <RestaurantList
-        data={[1,2,3,4,5]}
+        data={[1,2,3,4,5,]}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
+            onPress={() => navigation.navigate("Video")}
             >
               <Spacer position="bottom" size="large">
               <FadeInView>
-                  <ProgressItem />
+                  <ProgressItem pic={pics}/>
                 </FadeInView>
               </Spacer>
             </TouchableOpacity>

@@ -9,12 +9,14 @@ export const Icon = styled.Image`
 
 export const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
-  flex-direction: row;
 `;
 
 export const RestaurantCardCover = styled(Image)`
   padding: ${(props) => props.theme.space[3]};
   background-color: ${(props) => props.theme.colors.bg.primary};
+`;
+export const ProgressCardCover = styled(Image)`
+   background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 
 export const Address = styled.Text`

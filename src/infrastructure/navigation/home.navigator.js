@@ -10,6 +10,7 @@ import { HomeTest } from "../../features/home/screens/homeTest.screen";
 import { LevelDetails } from "../../features/home/screens/levelDetails";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { Progress } from "../../features/home/screens/progress.screen";
+import { Video, VideoScreen } from "../../features/home/screens/video";
 
 const HomeStack = createSharedElementStackNavigator();
 
@@ -46,6 +47,10 @@ export const HomeNavigator = () => {
             <HomeStack.Screen 
               name='progress'
               component={Progress}
+            />
+            <HomeStack.Screen 
+              name='Video'
+              component={VideoScreen}
             />
         </HomeStack.Navigator>
     )

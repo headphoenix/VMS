@@ -1,12 +1,14 @@
 import React from "react";
 import { SvgXml } from "react-native-svg";
 import { Text, View, Image, Animated, StyleSheet, } from "react-native";
+import { Card } from "react-native-paper";
+import * as Progress from 'react-native-progress';
 
 import { SharedElement } from 'react-navigation-shared-element';
 
 import {
   RestaurantCard,
-  RestaurantCardCover,
+  ProgressCardCover,
   Info,
   Section,
   SectionEnd,
@@ -14,6 +16,7 @@ import {
   Icon,
   Address,
 } from "./instrument-info-card.styles";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 
 const SPACING = 20;
@@ -25,23 +28,42 @@ const height = 130;
 const ITEM_HEIGHT = height * 0.18;
 
 
-export const ProgressItem = () => {
+export const ProgressItem = ({pic}) => {
 
   return (
-    <RestaurantCard style={{height: 130, borderRadius: 20}} elevation={5}>
-      <View style={{flex: 1, padding: SPACING}}>
-       <View />
-       <View style={{flexDirection:"column",flex: 1,paddingLeft: 15}}>
+    <Card style={{height: 165, borderRadius: 20}} elevation={5}>
+      <Spacer position="left" size="medium">
+      <Spacer position="top" size="medium">
+      <Spacer position="right" size="medium">
+       <View style={{flexDirection: "row"}}>
+      <Image source={pic[Math.floor(Math.random() * pic.length)]} style={styles.image} />
+      <Spacer>
+      <Text style={{fontSize: 20, paddingLeft: 10}}>Identifing the White Keys</Text>
+      <Text style={{fontSize: 15, paddingLeft: 10, paddingTop: 6, fontWeight: "300"}}>Identifing the White Keys</Text>
+      </Spacer>
+      </View>
+      <Spacer>
+      <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+      <Text style={{fontSize: 18, fontWeight: "700"}}>Progress</Text>
+      <Text style={{fontSize: 17, color: "purple", fontWeight: "700"}}>70%</Text> 
+      </View>
+      <Spacer>
+      <Progress.Bar progress={0.3} height={13} borderRadius={5} borderColor={"#ffffff"} unfilledColor={"lightgrey"} color={"purple"} width={null} />
+      </Spacer>
+      </Spacer>
+      </Spacer>
+      </Spacer>
+      </Spacer>
+      
+      {/* <View style={{flexDirection:"column",flex: 1,paddingLeft: 15}}>
        <Text style={styles.name}>Hello</Text>
        <Text style={styles.description}>
         Learn how to play the  {'\n'}
          Hi in Church from {'\n'}Zero to Mastery
          </Text> 
-       </View>
-       <RestaurantCardCover style={styles.image} />
-      </View>
-      <View />
-    </RestaurantCard>
+       </View> */}
+
+    </Card>
   );
 };
 
@@ -55,11 +77,10 @@ const styles = StyleSheet.create({
     opacity: 0.7,
    },
    image: {
-    width: 110,
-    height: 110,
-    resizeMode: "contain",
-    position: "absolute",
+    width: 65,
+    height: 68,
+    borderRadius: 20,
+    // position: "absolute",
     bottom: 0,
-    right: SPACING,
    },
 });

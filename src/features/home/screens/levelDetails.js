@@ -59,7 +59,7 @@ export const LevelDetails = ({ navigation, route }) => {
                     <Image source={item.img} style={styles.image} />
                 </SharedElement>
                 <SharedElement id='general.bg'>
-                    <ScrollView style={styles.bg}>
+                    <View style={styles.bg}>
                     <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 25, paddingBottom: 10}}>Choose Your Level</Text>
                             <Animatable.View
                                 ref={viewRef}
@@ -91,7 +91,7 @@ export const LevelDetails = ({ navigation, route }) => {
                                     // contentContainerStyle={{ paddingBottom: 5 }}
                                 />
                             </Animatable.View>
-                    </ScrollView>
+                    </View>
                 </SharedElement>
             </SafeArea>
         )

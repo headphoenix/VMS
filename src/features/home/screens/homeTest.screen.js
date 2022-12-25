@@ -35,6 +35,7 @@ const LoadingContainer = styled.View`
 export const HomeTest = ({ navigation }) => {
   const [isToggled, setIsToggled] = useState(false);
   const numColumns = Math.ceil(Instruments.length / 2);
+  
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
