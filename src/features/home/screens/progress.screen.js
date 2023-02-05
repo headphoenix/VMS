@@ -32,7 +32,7 @@ const LoadingContainer = styled.View`
 export const Progress = ({ navigation, route }) => {
   const [isToggled, setIsToggled] = useState(false);
 
-  const { item } = route.params;
+  const { item, level } = route.params;
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -56,24 +56,26 @@ export const Progress = ({ navigation, route }) => {
       </View>
      </Spacer>
      <Spacer position="left" size="large">
-     <Text style={{fontWeight: "600", fontSize: 30, marginBottom: 15, marginVertical:5}}>{item.name}</Text>
+     <Text style={{fontWeight: "600", fontSize: 30, marginBottom: 15, marginVertical:5}}>Hello</Text>
      </Spacer>
      <RestaurantList
-        data={[1,2,3,4,5,]}
+        data={level}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-            onPress={() => navigation.navigate("Video")}
+          onPress={() => navigation.navigate("Video", {
+            item
+          }) }
             >
               <Spacer position="bottom" size="large">
               <FadeInView>
-                  <ProgressItem pic={pics}/>
+                  <ProgressItem pic={pics} item={item}/>
                 </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );
         }}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item}
       />
 
      </ImageBackground>

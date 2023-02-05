@@ -92,7 +92,8 @@ export const HomeTest = ({ navigation }) => {
 
         return (
           <TouchableOpacity onPress={() => navigation.navigate("Level", {
-            item:item
+            item,
+            level: item,
           })}>
             <Spacer position="bottom" size="medium">
               <Animated.View style={{transform: [{scale}], opacity}}>

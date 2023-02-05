@@ -12,14 +12,16 @@ import { LevelItem } from "../components/LevelItem";
 import { Topics } from "../components/topics";
 
 export const LevelDetails = ({ navigation, route }) => {
-    const { item } = route.params
+    const { item, level } = route.params
+
+    console.log(level.name)
 
     const SPACING = 20;
     const AVATAR_SIZE = 70;
     const ITEM_SIZE = AVATAR_SIZE + SPACING * 3;
 
     const renderItem = ({ item, index }) => (
-        <LevelItem item={item} index={index} animation={animation} navigation={navigation} />)
+        <LevelItem level={level} item={item} index={index} animation={animation} navigation={navigation} />)
        
     const rendre = ({ item, index }) => (
         <Topics item={item} index={index} animation={animation} navigation={navigation} />)

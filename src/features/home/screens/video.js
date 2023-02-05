@@ -34,7 +34,9 @@ const triggerAudio = async (ref) => {
   };
 
 
-export const VideoScreen = ({ navigation }) => {
+export const VideoScreen = ({ navigation, route }) => {
+
+    const { item} = route.params;
 
     const { width, height } = Dimensions.get("window");
 
@@ -68,7 +70,8 @@ export const VideoScreen = ({ navigation }) => {
                 {/* Back */}
                 <View
                     style={{
-                        flex: 1
+                        flex: 1,
+                        backgroundColor: "black",
                     }}
                 >
                     <Ionicons onPress={() => navigation.goBack()} name="chevron-back-sharp" size={32} color="white" />
@@ -113,6 +116,8 @@ export const VideoScreen = ({ navigation }) => {
                         flexDirection: "row",
                         paddingHorizontal: 24,
                         zIndex: 1,
+                        backgroundColor: "black",
+                        paddingTop: 15,
                     }}
                 >
                     {renderHeaderComponents()}
@@ -123,43 +128,27 @@ export const VideoScreen = ({ navigation }) => {
 
     function renderVideoSection() {
         return (
-            <View
-                style={{
-                    height: "45%",
-                    alignItems: "center",
-                    justifyContent: 'center',
-                    backgroundColor: "#333333"
-                }}
-            >
-                {/* Thumbnail */}
-                <ImageBackground
-                    source={a1}
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}
-                >
-                    {/* Play Button */}
-                    <TouchableOpacity onPress={() => setPlayVideo(true)} >
-                        <FontAwesome mode="contained" name="play" size={32} color='lightgreen' />
-                    </TouchableOpacity>
 
-                    {playVideo &&
                         <WebView
                             // ref={ref}
                             // onPlaybackStatusUpdate={(status) => setStatus(status)}
                             style={{
+                                height: "70%",
+                                alignItems: "center",
+                                justifyContent: 'center',
+                                backgroundColor: "#333333",
                                 position: 'absolute',
                                 width: "100%",
-                                top: 0,
+                                paddingTop: 20,
+                                top: 88,
                                 left: 0,
                                 bottom: 0,
                                 right: 0,
+                                backgroundColor: "black",
+
                             }}
                             source={{
-                                uri: "https://drive.google.com/file/d/1Za3OCL_NbV3EQtpgNbXRUT1ADehJoZYr/view?usp=share_link",
+                                uri: item.link,
                             }}
                             // useNativeControls
                             // resizeMode="cover"
@@ -167,9 +156,6 @@ export const VideoScreen = ({ navigation }) => {
                             // shouldPlay={true}
                             // onLoad={(data) => setDuration(Number(data.duration))}
                         />
-                    }
-                </ImageBackground>
-            </View>
         )
     }
 
@@ -183,7 +169,10 @@ export const VideoScreen = ({ navigation }) => {
              <TouchableOpacity
                 style={{
                     flexDirection:"row",
-                    padding:20,
+                    paddingTop: 0,
+                    paddingLeft:20,
+                    paddingRight:20,
+                    paddingBottom:10,
                     marginHorizontal:20,
                     borderRadius:20,
                     alignItems:"center",

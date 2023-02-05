@@ -50,12 +50,16 @@ export const pics = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
   a24,
   a25]
 
+import { Ultra, Beginner, Intermediate, Advanced } from "./piano"
+
 
 export const Instruments = [
   {
     id: 0,
     name: "Piano",
     img: PI,
+    levels: [Ultra, Beginner, Intermediate, Advanced],
+
   },
   {
     id: 1,

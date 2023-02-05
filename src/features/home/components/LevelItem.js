@@ -16,7 +16,24 @@ const colorAr = [
   ]
   const bgColor = (i) => colorAr[i % colorAr.length];
 
-export const LevelItem = ({ item, index, animation, navigation,}) => {
+export const LevelItem = ({ level, item, index, animation, navigation,}) => {
+
+  // console.log(item?.name)
+
+  // create a function that will return the right item index based on the name
+ // TypeError: undefined is not an object (evaluating 'item.level[0]')
+  const Level = (item) => {
+    if (item.name === "Ultra Beginner") {
+      return level.levels[0]
+    } else if (item.name === "Beginner") {
+      return level.levels[1]
+    } else if (item.name === "Intermediate") {
+      return level.levels[2]
+    } else if (item.name === "Advanced") {
+      return level.levels[3]
+    };
+  }
+
     return (
       <Animatable.View
         animation={animation}
@@ -26,8 +43,8 @@ export const LevelItem = ({ item, index, animation, navigation,}) => {
         <View style={styled.listItem}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => navigation.navigate('progress', {
-              item
+            onPress={() => navigation.navigate('progress', { 
+               level: Level(item),
             })}>
             <View style={[styled.image, { backgroundColor: bgColor(index) }]}>
             <Text style={styled.name}>{item.name}</Text>

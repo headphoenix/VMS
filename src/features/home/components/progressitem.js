@@ -28,7 +28,8 @@ const height = 130;
 const ITEM_HEIGHT = height * 0.18;
 
 
-export const ProgressItem = ({pic}) => {
+export const ProgressItem = ({pic, item}) => {
+
 
   return (
     <Card style={{height: 165, borderRadius: 20}} elevation={5}>
