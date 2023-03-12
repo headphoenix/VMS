@@ -51,6 +51,7 @@ export const pics = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
   a25]
 
 import { Ultra, Beginner, Intermediate, Advanced } from "./piano"
+import { UltraDrummer, BeginnerDrummer, IntermediateDrummer, AdvancedDrummer } from "./drums"
 
 
 export const Instruments = [
@@ -65,6 +66,7 @@ export const Instruments = [
     id: 1,
     name: "Drums",
     img: DR,
+    levels: [UltraDrummer, BeginnerDrummer, IntermediateDrummer, AdvancedDrummer]
   },
   {
     id: 2,
