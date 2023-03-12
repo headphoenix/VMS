@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { SvgXml } from "react-native-svg";
 import { Text, View, Image, Animated, StyleSheet, } from "react-native";
 import { Card } from "react-native-paper";
 import * as Progress from 'react-native-progress';
+import HTMLParser from 'react-native-html-parser';
+
+
 
 import { SharedElement } from 'react-navigation-shared-element';
 
@@ -30,6 +33,23 @@ const ITEM_HEIGHT = height * 0.18;
 
 export const ProgressItem = ({pic, item}) => {
 
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    async function fetchTitle() {
+      try {
+        const response = await fetch(item.link);
+        const html = await response.text();
+        const parsedHtml = HTMLParser.parse(html);
+        const titleTag = parsedHtml.querySelector('title');
+        setTitle(titleTag.childNodes[0].rawText);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchTitle();
+  }, []);
+
 
   return (
     <Card style={{height: 165, borderRadius: 20}} elevation={5}>
@@ -39,17 +59,17 @@ export const ProgressItem = ({pic, item}) => {
        <View style={{flexDirection: "row"}}>
       <Image source={pic[Math.floor(Math.random() * pic.length)]} style={styles.image} />
       <Spacer>
-      <Text style={{fontSize: 20, paddingLeft: 10}}>Identifing the White Keys</Text>
-      <Text style={{fontSize: 15, paddingLeft: 10, paddingTop: 6, fontWeight: "300"}}>Identifing the White Keys</Text>
+      <Text style={{fontSize: 20, paddingLeft: 10}}>Lesson {item.id}</Text>
+      <Text style={{fontSize: 15, paddingLeft: 10, paddingTop: 6, fontWeight: "300"}}>{title}</Text>
       </Spacer>
       </View>
       <Spacer>
       <View style={{flexDirection: "row", justifyContent: "space-between"}}>
       <Text style={{fontSize: 18, fontWeight: "700"}}>Progress</Text>
-      <Text style={{fontSize: 17, color: "purple", fontWeight: "700"}}>70%</Text> 
+      <Text style={{fontSize: 17, color: "purple", fontWeight: "700"}}>0%</Text> 
       </View>
       <Spacer>
-      <Progress.Bar progress={0.3} height={13} borderRadius={5} borderColor={"#ffffff"} unfilledColor={"lightgrey"} color={"purple"} width={null} />
+      <Progress.Bar progress={0} height={13} borderRadius={5} borderColor={"#ffffff"} unfilledColor={"lightgrey"} color={"purple"} width={null} />
       </Spacer>
       </Spacer>
       </Spacer>
